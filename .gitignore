@@ -1,0 +1,14 @@
+/node_modules/
+/packs/
+/build/
+/release/
+/.dnd5e/
+/.midi/
+/refs/
+/node-user-data/
+/reference-*
+/dnd-source.zip
+/qa-*
+
+/.npm-cache/
+/maps.mjs
