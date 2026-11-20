@@ -3,9 +3,9 @@ const ERASE_RANGE_FT = 100 / 0.3048;
 const ERASE_ANGLE_DEG = 2 * Math.atan(0.5) * 180 / Math.PI;
 const ERASE_ITEM = "erasefixedtarget";
 const SEALS = [
-  { id:"west", name:"Западная печать", x:950, y:1130 },
-  { id:"east", name:"Восточная печать", x:3440, y:1130 },
-  { id:"south", name:"Южная печать", x:2210, y:2490 },
+  { id:"west", name:"Западная печать", x:960, y:1140 },
+  { id:"east", name:"Восточная печать", x:3430, y:1140 },
+  { id:"south", name:"Южная печать", x:2200, y:2510 },
 ];
 let busy = false;
 
@@ -69,11 +69,11 @@ async function rotateSeal({scene,emperor,combat}) {
     await scene.setFlag(MODULE,"seals",[...state,{id:seal.id,heroId}]);
     const template = pending(scene);
     if(template) await template.delete();
-    await announce(seal.name+" разворачивается. Белая молния уходит под пол, вырывается под троном и гасит голос Императора. Император падает.");
+    await announce(seal.name+" разворачивается. Белая молния уходит под пол, вырывается у ног Императора и гасит его голос. Император падает.");
   } else {
     const next = [...state,{id:seal.id,heroId}];
     await scene.setFlag(MODULE,"seals",next);
-    await announce(seal.name+" развёрнута. Под троном звенит металл. Печати: "+next.length+"/3.");
+    await announce(seal.name+" развёрнута. В камне звенит металл. Печати: "+next.length+"/3.");
   }
 }
 async function chooseDirection(emperor) {

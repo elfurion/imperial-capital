@@ -3,6 +3,7 @@ import { mkdir, writeFile } from "node:fs/promises";
 import { compilePack } from "@foundryvtt/foundryvtt-cli";
 import { cast, encounters, finalRules, ids } from "./encounters.mjs";
 import sharp from "sharp";
+import packageData from "./package.json" with { type:"json" };
 
 const id = "imperial-capital";
 const asset = (path) => "modules/"+id+"/assets/"+path;
@@ -131,7 +132,7 @@ const bounds = {
   avenue: { previewHeight:650, rects:[[14,15,199,129],[688,15,199,129],[14,215,199,132],[688,215,199,132],[14,433,199,130],[688,433,199,130]] },
   canal: { previewHeight:629, rects:[[24,13,143,93],[359,13,146,93],[737,12,144,94],[24,500,143,94],[359,500,146,94],[737,500,144,94]] },
   court: { previewHeight:687, rects:[[86,269,166,94],[646,269,167,94],[298,196,26,30],[574,196,27,30],[298,449,26,28],[574,449,27,28]] },
-  hall: { previewHeight:650, rects:[[179,130,28,28],[179,263,28,28],[179,396,28,28],[179,531,28,28],[692,130,28,28],[692,263,28,28],[692,396,28,28],[692,531,28,28]] },
+  hall: { previewHeight:1350, rects:[[112,28,18,1294],[770,28,18,1294],[127,23,236,18],[536,23,241,18],[127,1305,236,18],[536,1305,241,18],[391,529,120,69]] },
   throne: { previewHeight:695, rects:[] }
 };
 function wallsFor(e) {
@@ -176,7 +177,7 @@ const packs = [["adventure","Императорская столица · имп
 const repo = "https://github.com/elfurion/imperial-capital";
 const manifest = {
   id,title:"Императорская столица",description:p("Глава для трёх персонажей 14-го уровня. Пять карт, три охотника на магов, Страж Императора и Бог Молний."),
-  version:"1.0.0",compatibility:{minimum:"13.347",verified:"13.347",maximum:"13"},
+  version:packageData.version,compatibility:{minimum:"13.347",verified:"13.347",maximum:"13"},
   esmodules:["arena.mjs"],
   relationships:{
     systems:[{id:"dnd5e",type:"system",compatibility:{minimum:"5.2.0",verified:"5.2.5",maximum:"5.3.99"}}],
@@ -184,7 +185,7 @@ const manifest = {
   },
   packs:packs.map(([name,label,type])=>({name,label,type,system:"dnd5e",path:"packs/"+name,ownership:{PLAYER:"NONE",TRUSTED:"NONE",ASSISTANT:"OWNER"}})),
   url:repo,manifest:repo+"/releases/latest/download/module.json",
-  download:repo+"/releases/download/v1.0.0/imperial-capital.zip",readme:repo+"#readme",
+  download:repo+"/releases/download/v"+packageData.version+"/imperial-capital.zip",readme:repo+"#readme",
 };
 await mkdir("build/adventure",{recursive:true});
 await mkdir("packs",{recursive:true});
