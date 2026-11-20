@@ -1,8 +1,8 @@
 {
   "id": "imperial-capital",
   "title": "Императорская столица",
-  "description": "<p>Глава для трёх персонажей 14-го уровня. Пять карт, три охотника на магов, Страж Императора и Бог Молний.</p>",
-  "version": "1.0.1",
+  "description": "<p>Глава для трёх персонажей 14-го уровня. Пять боевых карт, три панорамы, три охотника на магов, Страж Императора и Бог Молний.</p>",
+  "version": "1.0.2",
   "compatibility": {
     "minimum": "13.347",
     "verified": "13.347",
@@ -50,6 +50,6 @@
   ],
   "url": "https://github.com/elfurion/imperial-capital",
   "manifest": "https://github.com/elfurion/imperial-capital/releases/latest/download/module.json",
-  "download": "https://github.com/elfurion/imperial-capital/releases/download/v1.0.1/imperial-capital.zip",
+  "download": "https://github.com/elfurion/imperial-capital/releases/download/v1.0.2/imperial-capital.zip",
   "readme": "https://github.com/elfurion/imperial-capital#readme"
 }

@@ -167,16 +167,37 @@ for(const [i,e] of encounters.entries()) {
     lights:[],sounds:[],drawings:[],walls:wallsFor(e),tiles:[],templates:[],notes:[],regions:[],_stats:stats,
   });
 }
+const panoramas = [
+  { key:"capital-overlook", name:"Столица с перевала" },
+  { key:"capital-walls", name:"Под стенами столицы" },
+  { key:"forest-dusk", name:"Лес на закате" },
+];
+for(const [i, panorama] of panoramas.entries()) {
+  const mapPath = "maps/"+panorama.key+".webp";
+  const thumbPath = "thumbs/"+panorama.key+".webp";
+  const image = sharp("assets/"+mapPath);
+  const { width, height } = await image.metadata();
+  await image.resize({width:720}).webp({quality:85}).toFile("assets/"+thumbPath);
+  scenes.push({
+    _id:pad("panorama"+panorama.key.replaceAll("-","")),name:panorama.name,sort:(encounters.length+i)*100000,
+    thumb:asset(thumbPath),width,height,padding:0,
+    background:{src:asset(mapPath),scaleX:1,scaleY:1,offsetX:0,offsetY:0},
+    backgroundColor:"#000000",
+    grid:{type:0,alpha:0},
+    tokenVision:false,fog:{exploration:false},environment:{darknessLevel:0,globalLight:{enabled:true}},
+    navigation:true,active:false,_stats:stats,
+  });
+}
 const adventure = {
   _id:"imperialcapital1",name:"Императорская столица",img:asset("thumbs/avenue.webp"),
-  description:p("Пять сцен для трёх персонажей 14-го уровня. Три охотника на магов, варлок Ли Шэнь (CR 20), Император (CR 50), журнал ведущего и три макроса для финала."),
+  description:p("Пять боевых сцен и три панорамы для трёх персонажей 14-го уровня. Три охотника на магов, варлок Ли Шэнь (CR 20), Император (CR 50), журнал ведущего и три макроса для финала."),
   caption:"Внутренний город, императорский дворец и Бог Молний",
   actors,scenes,journal:[journal],macros,_stats:stats,
 };
 const packs = [["adventure","Императорская столица · импорт всей главы","Adventure"]];
 const repo = "https://github.com/elfurion/imperial-capital";
 const manifest = {
-  id,title:"Императорская столица",description:p("Глава для трёх персонажей 14-го уровня. Пять карт, три охотника на магов, Страж Императора и Бог Молний."),
+  id,title:"Императорская столица",description:p("Глава для трёх персонажей 14-го уровня. Пять боевых карт, три панорамы, три охотника на магов, Страж Императора и Бог Молний."),
   version:packageData.version,compatibility:{minimum:"13.347",verified:"13.347",maximum:"13"},
   esmodules:["arena.mjs"],
   relationships:{
