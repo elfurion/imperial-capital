@@ -1,10 +1,9 @@
 {
   "name": "imperial-capital",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "private": true,
   "type": "module",
   "scripts": {
-    "assets": "node portrait.mjs",
     "build": "node build.mjs"
   },
   "devDependencies": {

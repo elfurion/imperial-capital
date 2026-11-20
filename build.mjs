@@ -77,7 +77,7 @@ const actors = Object.entries(cast).map(([k,npc])=>{
     _id,name:npc.name,img,type:"npc",sort:Object.keys(cast).indexOf(k)*100000,
     flags:{[id]:{emperor:npc.emperor===true}},
     prototypeToken:{
-      name:npc.name,texture:{src:img,scaleX:1,scaleY:1},width:1,height:1,actorLink:false,
+      name:npc.name,texture:{src:imgFor(npc.token ?? npc.img),scaleX:1,scaleY:1},width:1,height:1,actorLink:false,
       sight:{enabled:false},displayName:20,displayBars:20,bar1:{attribute:"attributes.hp"},disposition:-1,
     },
     system:{
